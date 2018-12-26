@@ -76,7 +76,7 @@ class MediaInfo {
     this.$version = null;
     this.$container = {};
     this.$videoES = [];
-    // this.$audioES = [];
+    this.$audioES = [];
     this.$textES = [];
     this.$rawData = null;
 
@@ -109,7 +109,7 @@ class MediaInfo {
 
   get videoES() { return this.$videoES; }
 
-  // get audioES() { return this.$audioES; }
+  get audioES() { return this.$audioES; }
 
   get textES() { return this.$textES; }
 
@@ -121,7 +121,7 @@ class MediaInfo {
     params.filename = this.url;
     params.container = this.container;
     if (this.videoES.length > 0) { params.video = this.videoES; }
-    // if (this.audioES.length > 0) { params.audio = this.audioES; }
+    if (this.audioES.length > 0) { params.audio = this.audioES; }
     if (this.textES.length > 0) { params.text = this.textES; }
 
     return params;
@@ -255,18 +255,18 @@ class MediaInfo {
    *
    * @param {object} track object
    */
-  // static parseAudioAttributes(track) {
-  //   const attributes = MediaInfo.parseCommonAttributes(track);
+  static parseAudioAttributes(track) {
+    const attributes = MediaInfo.parseCommonAttributes(track);
 
-  //   /* audio-specific attributes */
-  //   attributes.bitrateMode = MediaInfo.findString(track.Bit_rate_mode);
-  //   attributes.language = MediaInfo.findString(track.Language);
-  //   attributes.channels = MediaInfo.findNumber(track.Channel_s_);
-  //   attributes.samplingRate = MediaInfo.findNumber(track.Sampling_rate);
-  //   attributes.samplePerFrame = MediaInfo.findNumber(track.Samples_per_frame);
+    /* audio-specific attributes */
+    // attributes.bitrateMode = MediaInfo.findString(track.Bit_rate_mode);
+    // attributes.language = MediaInfo.findString(track.Language);
+    // attributes.channels = MediaInfo.findNumber(track.Channel_s_);
+    // attributes.samplingRate = MediaInfo.findNumber(track.Sampling_rate);
+    // attributes.samplePerFrame = MediaInfo.findNumber(track.Samples_per_frame);
 
-  //   return MediaInfo.compact(attributes);
-  // }
+    return MediaInfo.compact(attributes);
+  }
 
   /**
    *
@@ -459,9 +459,9 @@ class MediaInfo {
           case 'Video':
             this.videoES.push(MediaInfo.parseVideoAttributes(track));
             break;
-          // case 'Audio':
-          //   this.audioES.push(MediaInfo.parseAudioAttributes(track));
-          //   break;
+          case 'Audio':
+            this.audioES.push(MediaInfo.parseAudioAttributes(track));
+            break;
           case 'Text':
             this.textES.push(MediaInfo.parseTextAttributes(track));
             break;
