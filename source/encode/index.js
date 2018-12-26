@@ -36,7 +36,7 @@ exports.handler = async (event) => {
   try {
     // define paths:
     let inputPath = 's3://' + event.srcBucket + '/' + event.srcVideo;
-    let outputPath = 's3://' + event.destBucket + '/' + event.guid;
+    let outputPath = 's3://' + event.destBucket + '/' + event.srcVideo;
 
     // Baseline for the job parameters
     let job = {
@@ -48,17 +48,17 @@ exports.handler = async (event) => {
       },
       "Settings": {
         "Inputs": [{
-          "AudioSelectors": {
-            "Audio Selector 1": {
-              "Offset": 0,
-              "DefaultSelection": "NOT_DEFAULT",
-              "ProgramSelection": 1,
-              "SelectorType": "TRACK",
-              "Tracks": [
-                1
-              ]
-            }
-          },
+          // "AudioSelectors": {
+          //   "Audio Selector 1": {
+          //     "Offset": 0,
+          //     "DefaultSelection": "NOT_DEFAULT",
+          //     "ProgramSelection": 1,
+          //     "SelectorType": "TRACK",
+          //     "Tracks": [
+          //       1
+          //     ]
+          //   }
+          // },
           "VideoSelector": {
             "ColorSpace": "FOLLOW"
           },
